@@ -1,53 +1,42 @@
-<h1 align="center">
-    <img alt="PlantManager" title="PlantManager" src=".github/logo.svg" />
-</h1>
+<h1 align="center">Solar System</h1>
 
-<p align="center">
-  <a href="https://opensource.org/licenses/MIT">
-    <img src="https://img.shields.io/badge/License-MIT-2B7A4B" alt="License MIT">
-  </a>
-  
-  <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/Dougllas92/plantmanager-cli?color=2B7A4B">
+<img src=".github/solar-system.png" alt="Solar System">
 
-  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/Dougllas92/plantmanager-cli?color=2B7A4B">
+### 🚧 Pendências
 
-  <img alt="Repository size" src="https://img.shields.io/github/repo-size/Dougllas92/plantmanager-cli?color=2B7A4B">
-  
-  <a href="https://github.com/Fekleite/plantmanager/commits/master">
-    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/Dougllas92/plantmanager-cli?color=2B7A4B">
-  </a>
+Este é um projeto da umpontoseis criado de designers para desenvolvedores, que traz com ele o intuito de aperfeiçoar nossas habilidade e estreitar os laços profissionar.
 
-  <a href="https://github.com/Dougllas92/plantmanager-cli/issues">
-    <img alt="Repository issues" src="https://img.shields.io/github/issues/Dougllas92/plantmanager-cli?color=2B7A4B">
-  </a>
-</p>
+A parte do desafio do projeto proposto pela umpontoseis já foi concluído, mas para deixar o app mais completo e buscando melhorar alguns estudos na area estou colocando algumas outras atividades.
 
-<img src=".github/plantmanager-preview.png" alt="Plant Manager">
+Items do desafio
+- [x] Tela Bem-vindo
+- [x] Tela Home (Campo de pesquisa, Categorias e Listagem do Planetas)
+- [x] Tela Buscar (Campo de pesquisa, Cards dos Planetas)
+- [x] Tela Buscar Detalhes (Dados dos planetas)
 
-### 🚧 Ajustes e melhorias
-
-Após o fim da NLW #5 dei continuidade ao projeto que ainda está em desenvolvimento e as próximas atualizações serão voltadas nas seguintes tarefas: 
-
-- [x] Tela de preload - *Verificar se já existe um usuário criado no sistema.*
-- [x] Tela UserIdentification - *Opção de inserir foto e desabilitar button caso TextInput esteja vazio.*
-- [x] Tela Plantas - *Opção de alterar nome e imagem do usuário*
-- [x] MyPlants - *Adicionar mensagem quando o usuário não tiver nenhuma planta ainda.*
-- [x] MyPlants - *Alterar Alert para Modal personalizada.*
+Pendências
+- [] Tela de preload - *Verificar se já existe um usuário criado no sistema.*
+- [] Tela Identificação - *Inserir o nome e salvar no AsyncStorage.*
+- [] Tela Home - *Configurar botão Setting para que o usuário possa alterar o nome e mudar o tema*
+- [] Tela de Busca - *Configurar o botão de voltar e Setting*
+- [] Tela de Busca (Card) - *Configurar botão salvar favoritos*
+- [] Tela de Busca (Card) - *Configurar o botão de continue lendo para acessar os dados de detalhes do planeta*
+- [] Tela de Busca (Detalhes) - *Configurar o botão de Favoritos*
+- [] Tela de Busca (Detalhes) - *Configurar o botão de Compartilhar*
+- [] Tela de Favoritos
+- [] Tela de Imagens
 
 ### 🧪 Tecnologias
- * Node.js
+ * Expo
  * React Native
  * Typescript
+ * Styled-components
 
-## 💻 Pré-requisitos
+## 💻 Visualizar projeto
 
-Antes de começar, verifique se você atendeu aos seguintes requisitos:
+Para visualizar o projeto baixe o aplicativo Expo Go na Play Store e escaneie o código abaixo
 
-* Node.js
-* React Native
-* Npm ou Yarn
-
-## 🚀 Instalando Plant Manager
+## 🚀 Instalando Solar System
 
 Para instalar o Plant Manager, siga estas etapas:
 
@@ -65,7 +54,7 @@ yarn install ou npm install
 
 Inicie a aplicação
 ```
-npx react-native run-android
+expo start
 ```
 
 **Server**
@@ -84,21 +73,10 @@ json-server ./src/services/server.json --host 192.168.1.1 --port 9000
 ⚠️ *Lembre-se de utilizar o endereço IP da sua máquina* ⚠️
 
 
-## ☕ Usando Plant Manager
+## ☕ Usando Solar System
 
 **Alterando o IP do App**
 
-* Abre a pasta plantmanager-cli no editor e acesse o arquivo `src/services/api.tsx`
+* Abre a pasta SolarSystem no editor e acesse o arquivo `src/services/api.tsx`
 
 * Em baseURL coloque o IP:PORT que colocou no Server.
-
-
-## 📫 Contribuindo para Plant Manager
-
-Para contribuir com Plant Manager, siga estas etapas:
-
-1. Bifurque este repositório.
-2. Crie um branch: `git checkout -b <nome_branch>`.
-3. Faça suas alterações e confirme-as: `git commit -m '<mensagem_commit>'`
-4. Envie para o branch original: `git push origin <nome_do_projeto> / <local>`
-5. Crie a solicitação de pull.
