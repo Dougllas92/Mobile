@@ -21,6 +21,7 @@ import api from '../../services/api'
 import { useNavigation } from '@react-navigation/native'
 
 import { PlanetDetailProps } from '../../interfaces'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 interface PlanetProps {
     id: string
@@ -37,6 +38,7 @@ const Home: React.FC = () => {
   const [planets, setPlanets] = useState<PlanetDetailProps[]>([])
   const [planetsFiltered, setPlanetFiltered] = useState<PlanetDetailProps[]>([])
   const [search, setsearch] = useState('')
+  const [username, setUsername] = useState('')
 
   async function fetchPlanets() {
     try {
@@ -67,7 +69,14 @@ const Home: React.FC = () => {
     navigation.navigate('Search', { page: 2, planetId })
   }
 
+  async function loadingUser() {
+    const user = await AsyncStorage.getItem('@solarsystem:user')
+
+    setUsername(user || '')
+  }
+
   useEffect(() => {
+    loadingUser()
     fetchPlanets()
   }, [])
 
@@ -85,7 +94,7 @@ const Home: React.FC = () => {
                 fontWeight: 'bold'
               }}
             >
-              Douglas
+              {username}
             </GradientText>
           </Geetings>
           <Feather name='settings' size={24} color={theme.colors.text} />
@@ -94,6 +103,7 @@ const Home: React.FC = () => {
         
         <SizedBox height={30} />
         <Input
+          iconActive
           placeholderTextColor={theme.colors.textOpacity} 
           placeholder='Procure planetas, asteroides, estrelas...'
           
