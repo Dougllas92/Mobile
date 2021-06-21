@@ -4,13 +4,18 @@ import { useTheme } from 'styled-components';
 
 import { Search, TextInput, Wrapper } from './styles';
 
-interface InputProps extends TextInputProps {} 
+interface InputProps extends TextInputProps {
+  iconActive?: boolean
+} 
 
-const Input = ({...rest} : InputProps) => {
+const Input = ({iconActive, ...rest} : InputProps) => {
   const theme = useTheme()
   return(
     <Wrapper>
-      <Search name='search' size={16} color={theme.colors.text}/>
+      {iconActive ?
+        <Search name='search' size={16} color={theme.colors.text}/>
+        : null
+      }
       <TextInput {...rest} />
     </Wrapper>
   )
