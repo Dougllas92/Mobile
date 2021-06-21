@@ -4,7 +4,7 @@
 
 ### 🚧 Pendências
 
-Este é um projeto da umpontoseis criado de designers para desenvolvedores, que traz com ele o intuito de aperfeiçoar nossas habilidade e estreitar os laços profissionar.
+Este é um projeto da umpontoseis criado de designers para desenvolvedores, que traz com ele o intuito de aperfeiçoar nossas habilidade e estreitar os laços profissional.
 
 A parte do desafio do projeto proposto pela umpontoseis já foi concluído, mas para deixar o app mais completo e buscando melhorar alguns estudos na area estou colocando algumas outras atividades.
 
@@ -15,16 +15,16 @@ Items do desafio
 - [x] Tela Buscar Detalhes (Dados dos planetas)
 
 Pendências
-- [] Tela de preload - *Verificar se já existe um usuário criado no sistema.*
-- [] Tela Identificação - *Inserir o nome e salvar no AsyncStorage.*
-- [] Tela Home - *Configurar botão Setting para que o usuário possa alterar o nome e mudar o tema*
-- [] Tela de Busca - *Configurar o botão de voltar e Setting*
-- [] Tela de Busca (Card) - *Configurar botão salvar favoritos*
-- [] Tela de Busca (Card) - *Configurar o botão de continue lendo para acessar os dados de detalhes do planeta*
-- [] Tela de Busca (Detalhes) - *Configurar o botão de Favoritos*
-- [] Tela de Busca (Detalhes) - *Configurar o botão de Compartilhar*
-- [] Tela de Favoritos
-- [] Tela de Imagens
+- [ ] Tela de preload - *Verificar se já existe um usuário criado no sistema.*
+- [x] Tela Identificação - *Inserir o nome e salvar no AsyncStorage.* - Concluída (21/06/21)
+- [ ] Tela Home - *Configurar botão Setting para que o usuário possa alterar o nome e mudar o tema*
+- [ ] Tela de Busca - *Configurar o botão de voltar e Setting*
+- [ ] Tela de Busca (Card) - *Configurar botão salvar favoritos*
+- [ ] Tela de Busca (Card) - *Configurar o botão de continue lendo para acessar os dados de detalhes do planeta*
+- [ ] Tela de Busca (Detalhes) - *Configurar o botão de Favoritos*
+- [ ] Tela de Busca (Detalhes) - *Configurar o botão de Compartilhar*
+- [ ] Tela de Favoritos
+- [ ] Tela de Imagens
 
 ### 🧪 Tecnologias
  * Expo
