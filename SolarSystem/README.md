@@ -15,7 +15,7 @@ Items do desafio
 - [x] Tela Buscar Detalhes (Dados dos planetas)
 
 Pendências
-- [ ] Tela de preload - *Verificar se já existe um usuário criado no sistema.*
+- [x] Tela de preload - *Verificar se já existe um usuário criado no sistema.* - Concluído (21/06/21)
 - [x] Tela Identificação - *Inserir o nome e salvar no AsyncStorage.* - Concluída (21/06/21)
 - [ ] Tela Home - *Configurar botão Setting para que o usuário possa alterar o nome e mudar o tema*
 - [ ] Tela de Busca - *Configurar o botão de voltar e Setting*
