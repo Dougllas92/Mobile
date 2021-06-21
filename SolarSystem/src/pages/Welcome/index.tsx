@@ -24,7 +24,7 @@ const Welcome: React.FC = () => {
   const height = size.height * 1.4
 
   function navigateToBottomTabs() {
-    navigation.navigate('BottomTabs')
+    navigation.navigate('UserIdentification')
   }
   
   return(
