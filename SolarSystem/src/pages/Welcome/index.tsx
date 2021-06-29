@@ -1,5 +1,6 @@
 import React from 'react'
 import { useNavigation } from '@react-navigation/core'
+import { useTheme } from 'styled-components'
 
 //styles
 import { 
@@ -15,13 +16,15 @@ import { Feather } from '@expo/vector-icons'
 //Components, Global and theme
 import { Button, Text } from '../../global'
 import { SizedBox } from '../../components'
-import { useTheme } from 'styled-components'
+
+//Image Background
+import BGImg from '../../assets/backgrounds/solar-system.jpg'
 
 const Welcome: React.FC = () => {
   const { size } = useTheme()
   const navigation = useNavigation()
 
-  const height = size.height * 1.4
+  const height = size.height
 
   function navigateToBottomTabs() {
     navigation.navigate('UserIdentification')
@@ -29,7 +32,9 @@ const Welcome: React.FC = () => {
   
   return(
     <Wrapper>
-      <Background height={height} width={height} />
+      <Background 
+        source={BGImg} 
+      />
 
       <Text opacity={0.50}>aperte o cinto</Text>
       <Text size='title' center bold> 
