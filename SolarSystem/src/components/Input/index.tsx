@@ -1,8 +1,8 @@
 import React from 'react'
 import { TextInputProps } from 'react-native'
-import { useTheme } from 'styled-components';
+import { useTheme } from 'styled-components'
 
-import { Search, TextInput, Wrapper } from './styles';
+import { Search, TextInput, Wrapper } from './styles'
 
 interface InputProps extends TextInputProps {
   iconActive?: boolean
@@ -16,9 +16,10 @@ const Input = ({iconActive, ...rest} : InputProps) => {
         <Search name='search' size={16} color={theme.colors.text}/>
         : null
       }
+      {/* @ts-ignore */}
       <TextInput {...rest} />
     </Wrapper>
   )
 }
 
-export default Input;
+export default Input
