@@ -1,7 +1,17 @@
+import PlanetCardSecondary from './PlanetCardSecondary'
+import AppBackground from './AppBackground'
+import CategoryCard from './CategoryCard'
+import GradientText from './GradientText'
+import PlanetCard from './PlanetCard'
 import SizedBox from './SizedBox'
 import Input from './Input'
-import CategoryCard from './CategoryCard'
-import PlanetCard from './PlanetCard'
-import GradientText from './GradientText'
 
-export { SizedBox, Input, CategoryCard, PlanetCard, GradientText }
+export { 
+  PlanetCardSecondary,
+  AppBackground,
+  CategoryCard,
+  GradientText,
+  PlanetCard,
+  SizedBox,
+  Input
+ }
