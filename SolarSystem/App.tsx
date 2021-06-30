@@ -1,11 +1,11 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { ActivityIndicator } from 'react-native'
-import Routes from './src/routes';
+import React from 'react'
 import { ThemeProvider } from 'styled-components'
-import theme from './src/styles/theme';
-import { NavigationContainer } from '@react-navigation/native';
+import { ActivityIndicator, LogBox } from 'react-native'
+import { StatusBar } from 'expo-status-bar'
+import theme from './src/styles/theme'
+import Routes from './src/routes'
 
+LogBox.ignoreLogs(['Require cycle'])
 
 import {
   useFonts,
@@ -17,7 +17,7 @@ export default function App() {
   const [fontsLoaded] = useFonts({
     Roboto_400Regular,
     Roboto_700Bold
-  });
+  })
 
   if(!fontsLoaded)
     return <ActivityIndicator size='large' color='#fff' />
@@ -26,9 +26,7 @@ export default function App() {
 
     <ThemeProvider theme={theme}>
       <StatusBar style='light'/>
-      <NavigationContainer>
         <Routes />
-      </NavigationContainer>
     </ThemeProvider>
-  );
+  )
 }
