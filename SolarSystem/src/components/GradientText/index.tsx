@@ -1,8 +1,8 @@
-import React from "react";
-import { Text, TextProps } from "react-native";
-import MaskedView from "@react-native-community/masked-view";
-import { LinearGradient } from "expo-linear-gradient";
-import { useTheme } from "styled-components";
+import React from "react"
+import MaskedView from "@react-native-community/masked-view"
+import { LinearGradient } from "expo-linear-gradient"
+import { Text, TextProps } from "react-native"
+import { useTheme } from "styled-components"
 
 interface GradientTextprops extends TextProps {
   children: string
@@ -21,7 +21,7 @@ const GradientText = ({ children, ...props } : GradientTextprops) => {
         <Text {...props} style={[props.style, { opacity: 0 }]}>{children}</Text>
       </LinearGradient>
     </MaskedView>
-  );
-};
+  )
+}
 
-export default GradientText;
+export default GradientText
