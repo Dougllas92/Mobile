@@ -1,7 +1,8 @@
-import React from 'react'
-import { useNavigation } from '@react-navigation/core'
-import { Alert } from 'react-native'
+import React, { useState } from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import { useNavigation } from '@react-navigation/core'
+import { useTheme } from 'styled-components'
+import { Alert } from 'react-native'
 
 //styles
 import { 
@@ -11,38 +12,35 @@ import {
   Gradient
 } from './styles'
 
-//icons
-import { Feather } from '@expo/vector-icons'
+//Image Background
+import BGImg from '../../assets/backgrounds/solar-system.jpg'
 
-//Components, Global and theme
-import { Button, Text } from '../../global'
+import { COLLECTION_USERS } from '../../config/storage'
+
 import { SizedBox, Input } from '../../components'
-import { useTheme } from 'styled-components'
-import { useState } from 'react'
+import { Button, Text } from '../../global'
 
 const UserIdentification: React.FC = () => {
-  const { size, colors } = useTheme()
+  const { colors } = useTheme()
   const navigation = useNavigation()
   const [name, setName] = useState('');
 
-  const height = size.height * 1.4
-
-  async function navigateToBottomTabs() {
+  async function navigateToApp() {
     if(!name)
       return Alert.alert('Me diz como podemos chamar você')
 
     try {
-      await AsyncStorage.setItem('@solarsystem:user', name)
+      await AsyncStorage.setItem(COLLECTION_USERS, name)
     } catch(err) {
       Alert.alert('Não foi possivel salvar seu nome')
     }
 
-    navigation.navigate('BottomTabs')
+    navigation.navigate('AppRoutes')
   }
   
   return(
     <Wrapper>
-      <Background height={height} width={height} />
+      <Background source={BGImg}/>
       <Content>
         <Text size='subtitle' center> 
           Como podemos {'\n'}chamar você?
@@ -60,7 +58,7 @@ const UserIdentification: React.FC = () => {
         <SizedBox height={20} />
         <Button
           disabled={!!name ? false : true} 
-          onPress={() => navigateToBottomTabs()}
+          onPress={() => navigateToApp()}
         >
           <Gradient>
             <Text bold>Confirmar</Text>

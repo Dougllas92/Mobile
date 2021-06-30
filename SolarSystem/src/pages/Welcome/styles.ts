@@ -1,10 +1,5 @@
 import styled from 'styled-components/native'
-import { Dimensions } from 'react-native'
-
-import BackgroundSolarSystem from '../../assets/backgrounds/background-solar-system.svg'
 import { LinearGradient } from 'expo-linear-gradient'
-
-const height = Math.round(Dimensions.get('window').height * 1.4)
 
 export const Wrapper = styled.View`
   flex: 1;
@@ -13,17 +8,12 @@ export const Wrapper = styled.View`
   justify-content: center;
 `
 
-// export const Background = styled(BackgroundSolarSystem)`
-//   position: absolute;
-//   right: -120px;
-// `
 export const Background = styled.Image`
   position: absolute;
-  right: -120px;
-  height: ${height}px;
-  width: ${height}px;
+  right: -150px;
+  height: ${({theme}) => theme.size.background}px;
+  width: ${({theme}) => theme.size.background}px;
 `
-
 
 export const Text = styled.Text`
   color: ${({theme}) => theme.colors.text};

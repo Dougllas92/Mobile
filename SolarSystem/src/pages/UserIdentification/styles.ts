@@ -1,6 +1,4 @@
 import styled from 'styled-components/native'
-
-import BackgroundSolarSystem from '../../assets/backgrounds/background-solar-system.svg'
 import { LinearGradient } from 'expo-linear-gradient'
 
 export const Wrapper = styled.View`
@@ -10,11 +8,13 @@ export const Wrapper = styled.View`
   justify-content: center;
 `
 
-export const Background = styled(BackgroundSolarSystem)`
+export const Background = styled.Image`
   position: absolute;
-  right: -35%;
-  top: -20%;
+  right: -150px;
+  height: ${({theme}) => theme.size.background}px;
+  width: ${({theme}) => theme.size.background}px;
 `
+
 export const Content = styled.View`
   width: 60%;
 `

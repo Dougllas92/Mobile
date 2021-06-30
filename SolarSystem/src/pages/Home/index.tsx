@@ -1,9 +1,13 @@
 import React, { useState, useEffect} from 'react'
+import AsyncStorage from '@react-native-async-storage/async-storage'
+import { useNavigation } from '@react-navigation/native'
 import { Alert, FlatList } from 'react-native'
+import { useTheme } from 'styled-components'
+import { Feather } from '@expo/vector-icons'
+import LottieView from 'lottie-react-native'
 
 import { 
   Wrapper,
-  Background,
   Header,
   Geet,
   Geetings,
@@ -11,68 +15,67 @@ import {
   Planets
 } from './styles'
 
-import { Text } from '../../global'
-import { CategoryCard, GradientText, Input, PlanetCard, SizedBox } from '../../components'
+import LoadLottie from '../../assets/icons/load.json'
 
-import { Feather } from '@expo/vector-icons'
-import { useTheme } from 'styled-components'
+//Components
+import { AppBackground, CategoryCard, GradientText, Input, PlanetCard, SizedBox } from '../../components'
+import { Text, Button } from '../../global'
 
-import api from '../../services/api'
-import { useNavigation } from '@react-navigation/native'
-
+//Interface and Api
+import { COLLECTION_USERS } from '../../config/storage'
 import { PlanetDetailProps } from '../../interfaces'
-import AsyncStorage from '@react-native-async-storage/async-storage'
-
-interface PlanetProps {
-    id: string
-    name: string
-    type: string
-    image: string
-    resume: string
-}
+import api from '../../services/api'
+import Load from '../../components/Load'
 
 const Home: React.FC = () => {
-  const theme = useTheme()
   const navigation = useNavigation()
+  const theme = useTheme()
 
-  const [planets, setPlanets] = useState<PlanetDetailProps[]>([])
   const [planetsFiltered, setPlanetFiltered] = useState<PlanetDetailProps[]>([])
-  const [search, setsearch] = useState('')
+  const [planets, setPlanets] = useState<PlanetDetailProps[]>([])
   const [username, setUsername] = useState('')
+  const [search, setsearch] = useState('') 
+  const [loading, setLoading] = useState(true) 
 
   async function fetchPlanets() {
     try {
-      const planet = await api.fetchPlanets()
+      const planet: PlanetDetailProps[] = await api.fetchPlanets()
       setPlanets(planet)
       setPlanetFiltered(planet)
     } catch(err) {
       Alert.alert('Erro ao buscar dados')
+    } finally {
+      setLoading(false)
     }
+  }
+  
+  async function loadingUser() {
+    const user = await AsyncStorage.getItem(COLLECTION_USERS)
+    setUsername(user || '')
   }
 
   async function handleCategorySelected(category: string) {
     if(category === 'galaxy')
       return setPlanetFiltered(planets)
 
-    const filtered = planets.filter(planet =>
-      planet.type.includes(category)  
+    const filtered: PlanetDetailProps[] = planets.filter(planet =>
+      planet.searchTags.includes(category)  
     )
+
+    if(category === 'planeta') {
+      // @ts-ignore
+      setPlanetFiltered(filtered.shift())
+    }
 
     setPlanetFiltered(filtered)
   }
 
   async function searchPlanet() {
-    navigation.navigate('Search', { search, page: -1 })
+    navigation.navigate('Search', { search, page: 1 })
   }
 
   async function handlePageDetail( planetId: number ) {
     navigation.navigate('Search', { page: 2, planetId })
-  }
-
-  async function loadingUser() {
-    const user = await AsyncStorage.getItem('@solarsystem:user')
-
-    setUsername(user || '')
   }
 
   useEffect(() => {
@@ -82,22 +85,22 @@ const Home: React.FC = () => {
 
   return(
     <Wrapper>
-      <Background />
+      <AppBackground />
       <Header>
         <Geet>
           <Geetings>
             <Text size='title' bold>Olá, </Text>
             
-            <GradientText 
-              style={{
-                fontSize: 32,
-                fontWeight: 'bold'
-              }}
-            >
+            <GradientText style={{ fontSize: 32, fontWeight: 'bold' }} >
               {username}
             </GradientText>
           </Geetings>
-          <Feather name='settings' size={24} color={theme.colors.text} />
+          <Button
+            height={24} 
+            activeOpacity={0.7}
+          >
+            <Feather name='settings' size={24} color={theme.colors.text} />
+          </Button>
         </Geet>
         <Text>O que você vai aprender hoje?</Text>
         
@@ -122,15 +125,19 @@ const Home: React.FC = () => {
         <Text>Sistema Solar</Text>
       </Categories>
       <Planets>
-        <FlatList 
-          data={planetsFiltered}
-          keyExtractor={(item) => String(item.id)}
-          renderItem={({ item }) => (
-            <PlanetCard data={item} onPress={() => handlePageDetail(parseInt(item.id))} />
-          )}
-          horizontal
-          showsHorizontalScrollIndicator={false}
-        />
+        {loading ?
+          <LottieView source={LoadLottie} autoPlay style={{ width: 200, height: 200}} />
+          :
+          <FlatList 
+            data={planetsFiltered}
+            keyExtractor={(item) => String(item.id)}
+            renderItem={({ item }) => (
+              <PlanetCard data={item} onPress={() => handlePageDetail(item.id)} />
+            )}
+            horizontal
+            showsHorizontalScrollIndicator={false}
+          />
+        }
       </Planets>
 
     </Wrapper>

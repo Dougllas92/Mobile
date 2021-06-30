@@ -1,21 +1,21 @@
 import React from 'react'
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs'
-
-const Tab = createMaterialBottomTabNavigator()
 import { Feather } from '@expo/vector-icons'
-
-
-import Home from '../pages/Home'
-import Search from '../pages/Search'
-import Bookmark from '../pages/Bookmark'
-import Picture from '../pages/Picture'
 import { useTheme } from 'styled-components'
 
-const BottomTabs: React.FC = () => {
+const { Navigator, Screen} = createMaterialBottomTabNavigator()
+
+import Bookmark from '../pages/Bookmark'
+import Picture from '../pages/Picture'
+import Search from '../pages/Search'
+import Home from '../pages/Home'
+
+
+const AppRoutes: React.FC = () => {
   const theme = useTheme();
 
   return(
-    <Tab.Navigator
+    <Navigator
       barStyle={{
         backgroundColor: theme.colors.primary,
         borderTopLeftRadius: 12,
@@ -27,7 +27,7 @@ const BottomTabs: React.FC = () => {
         backgroundColor: theme.colors.background
       }}
     >
-      <Tab.Screen
+      <Screen
         name='Home' 
         component={Home} 
         options={{
@@ -36,7 +36,7 @@ const BottomTabs: React.FC = () => {
           )
         }}
       />
-      <Tab.Screen 
+      <Screen 
         name='Search' 
         component={Search} 
         options={{
@@ -44,9 +44,9 @@ const BottomTabs: React.FC = () => {
             <Feather name='search' color={color} size={24} />
           )
         }}
-        initialParams={{ search: '', page: -1 }}
+        initialParams={{ search: '', page: 1 }}
       />
-      <Tab.Screen 
+      <Screen 
         name='Bookmark' 
         component={Bookmark} 
         options={{
@@ -55,7 +55,7 @@ const BottomTabs: React.FC = () => {
           )
         }}
       />
-      <Tab.Screen 
+      <Screen 
         name='Picture' 
         component={Picture} 
         options={{
@@ -64,8 +64,8 @@ const BottomTabs: React.FC = () => {
           )
         }}
       />
-    </Tab.Navigator>
+    </Navigator>
   )
 }
 
-export default BottomTabs;
+export default AppRoutes

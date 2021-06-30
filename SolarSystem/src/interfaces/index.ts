@@ -1,5 +1,5 @@
 export interface PlanetDetailProps {
-    id: string
+    id: number
     name: string
     type: string
     resume: string
@@ -21,4 +21,5 @@ export interface PlanetDetailProps {
     },
     hidrology: string
     geography: string
+    bookmark: boolean
 }

@@ -1,25 +1,35 @@
-import React, { useEffect } from 'react'
-import { createStackNavigator } from '@react-navigation/stack'
+import React, { useState, useEffect } from 'react'
+import AsyncStorage from '@react-native-async-storage/async-storage'
+import { NavigationContainer } from '@react-navigation/native'
 
-import Welcome from '../pages/Welcome'
-import BottomTabs from './BottomTabs'
-import UserIdentification from '../pages/UserIdentification'
-import Preload from '../pages/Preload'
+import { COLLECTION_USERS } from '../config/storage'
+
+import AuthRoutes from './auth.routes'
+import AppRoutes from './app.routes'
+import Load from '../components/Load'
 
 const Routes: React.FC = () => {
-  const Stack = createStackNavigator()
+  const [username, setUsername] = useState('')
+  const [loading, setLoading] = useState(true)
+
+  async function loadUser() {
+    const user = await AsyncStorage.getItem(COLLECTION_USERS)
+    setUsername(user || '')
+    setLoading(false)
+  }
+
+  useEffect(() => {
+    loadUser()
+  },[])
+
+  if(loading)
+    return <Load />
 
   return(
-    <Stack.Navigator
-      screenOptions={{headerShown: false}}
-      initialRouteName='Preload'
-    >
-      <Stack.Screen name='Preload' component={Preload} />
-      <Stack.Screen name='Welcome' component={Welcome} />
-      <Stack.Screen name='UserIdentification' component={UserIdentification} />
-      <Stack.Screen name='BottomTabs' component={BottomTabs} />
-    </Stack.Navigator>
+    <NavigationContainer>
+      {!!username ? <AppRoutes /> : <AuthRoutes /> }
+    </NavigationContainer>
   )
 }
 
-export default Routes;
+export default Routes

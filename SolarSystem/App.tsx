@@ -1,6 +1,6 @@
 import React from 'react'
-import { ThemeProvider } from 'styled-components'
 import { ActivityIndicator, LogBox } from 'react-native'
+import { ThemeProvider } from 'styled-components'
 import { StatusBar } from 'expo-status-bar'
 import theme from './src/styles/theme'
 import Routes from './src/routes'

@@ -2,29 +2,16 @@
 
 <img src=".github/solar-system.png" alt="Solar System">
 
-### 🚧 Pendências
+### 💻 Projeto Solar System - Umpontoseis
 
 Este é um projeto da umpontoseis criado de designers para desenvolvedores, que traz com ele o intuito de aperfeiçoar nossas habilidade e estreitar os laços profissional.
 
-A parte do desafio do projeto proposto pela umpontoseis já foi concluído, mas para deixar o app mais completo e buscando melhorar alguns estudos na area estou colocando algumas outras atividades.
-
 Items do desafio
 - [x] Tela Bem-vindo
+- [x] Extra - Tela de Identificação
 - [x] Tela Home (Campo de pesquisa, Categorias e Listagem do Planetas)
 - [x] Tela Buscar (Campo de pesquisa, Cards dos Planetas)
 - [x] Tela Buscar Detalhes (Dados dos planetas)
-
-Pendências
-- [x] Tela de preload - *Verificar se já existe um usuário criado no sistema.* - Concluído (21/06/21)
-- [x] Tela Identificação - *Inserir o nome e salvar no AsyncStorage.* - Concluída (21/06/21)
-- [ ] Tela Home - *Configurar botão Setting para que o usuário possa alterar o nome e mudar o tema*
-- [ ] Tela de Busca - *Configurar o botão de voltar e Setting*
-- [ ] Tela de Busca (Card) - *Configurar botão salvar favoritos*
-- [ ] Tela de Busca (Card) - *Configurar o botão de continue lendo para acessar os dados de detalhes do planeta*
-- [ ] Tela de Busca (Detalhes) - *Configurar o botão de Favoritos*
-- [ ] Tela de Busca (Detalhes) - *Configurar o botão de Compartilhar*
-- [ ] Tela de Favoritos
-- [ ] Tela de Imagens
 
 ### 🧪 Tecnologias
  * Expo
@@ -32,19 +19,19 @@ Pendências
  * Typescript
  * Styled-components
 
-## 💻 Visualizar projeto
+## 👨‍🔬 Visualizar projeto
 
 Para visualizar o projeto baixe o aplicativo Expo Go na Play Store e escaneie o código abaixo
 
 ## 🚀 Instalando Solar System
 
-Para instalar o Plant Manager, siga estas etapas:
+Para instalar o Solar Sysmte, siga estas etapas:
 
 Clone o projeto e acesse a pasta
 
 ```
-git clone https://github.com/Dougllas92/plantmanager-cli.git
-cd plantmanager-cli
+git clone https://github.com/Dougllas92/Mobile.git
+cd Mobile/SolarSystem
 ```
 
 Instale as dependências

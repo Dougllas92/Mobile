@@ -26,6 +26,7 @@ export default {
   },
 
   size: {
+    background: Math.round(Dimensions.get('window').height * 1.5),
     width: Dimensions.get('window').width,
     height: Dimensions.get('window').height,
     title: '32px',

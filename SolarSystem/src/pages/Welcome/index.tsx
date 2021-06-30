@@ -1,6 +1,6 @@
 import React from 'react'
 import { useNavigation } from '@react-navigation/core'
-import { useTheme } from 'styled-components'
+import { Feather } from '@expo/vector-icons'
 
 //styles
 import { 
@@ -10,23 +10,17 @@ import {
   Gradient
 } from './styles'
 
-//icons
-import { Feather } from '@expo/vector-icons'
+//Image Background
+import BGImg from '../../assets/backgrounds/solar-system.jpg'
 
 //Components, Global and theme
 import { Button, Text } from '../../global'
 import { SizedBox } from '../../components'
 
-//Image Background
-import BGImg from '../../assets/backgrounds/solar-system.jpg'
-
 const Welcome: React.FC = () => {
-  const { size } = useTheme()
   const navigation = useNavigation()
 
-  const height = size.height
-
-  function navigateToBottomTabs() {
+  function navigateToUserIdentification() {
     navigation.navigate('UserIdentification')
   }
   
@@ -44,7 +38,7 @@ const Welcome: React.FC = () => {
       <GroupButton>
         <Text size='caption' center>Pronto para a decolagem?</Text>
         <SizedBox height={16} />
-        <Button onPress={() => navigateToBottomTabs()}>
+        <Button onPress={navigateToUserIdentification}>
           <Gradient>
             <Text bold>Começar agora</Text>
             <SizedBox width={16} />

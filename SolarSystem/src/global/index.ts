@@ -1,5 +1,4 @@
 import styled from 'styled-components/native'
-import theme from '../styles/theme';
 
 interface TextProps {
   size?: 'title' | 'subtitle' | 'caption' | 'small'
@@ -31,4 +30,3 @@ export const Button = styled.TouchableOpacity<ButtonProps>`
     justify-content: center;
     ${(props) => props.row ? `flex-direction: row;` : ''};
 `
-

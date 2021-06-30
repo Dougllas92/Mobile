@@ -258,7 +258,7 @@
   {
     "id": "7",
     "name": "Urano",
-    "type":"asteroid",
+    "type":"planet",
     "resume": "Netuno é o oitavo planeta do Sistema Solar, o último a partir do Sol...",
     "introduction": "",
     "image": "https://api-solar-system.herokuapp.com/files/planets/uranus.svg",
@@ -330,7 +330,7 @@
   {
     "id": "9",
     "name": "Plutão",
-    "type":"asteroid",
+    "type":"planet",
     "resume": "Netuno é o oitavo planeta do Sistema Solar, o último a partir do Sol desde a reclassificação...",
     "introduction": "",
     "image": "https://api-solar-system.herokuapp.com/files/planets/pluto.svg",

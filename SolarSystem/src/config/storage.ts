@@ -1,0 +1,9 @@
+const STORAGE_NAME = '@solarsystem'
+
+const COLLECTION_USERS = `${STORAGE_NAME}:user`
+const COLLECTION_BOOKMARK = `${STORAGE_NAME}:bookmark`
+
+export {
+  COLLECTION_USERS,
+  COLLECTION_BOOKMARK
+}

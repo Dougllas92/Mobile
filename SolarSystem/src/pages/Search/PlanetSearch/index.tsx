@@ -1,60 +1,52 @@
 import React, { useState, useEffect } from 'react'
+import { BorderlessButton } from 'react-native-gesture-handler'
+import { useNavigation } from '@react-navigation/native'
+import { useTheme } from 'styled-components'
+import { Feather } from '@expo/vector-icons'
 import { FlatList } from 'react-native'
 
-import { Header, Wrapper, Background } from './styles'
+import { Header, Wrapper } from './styles'
 
+import { SizedBox, Input, PlanetCardSecondary, AppBackground } from '../../../components'
 import { Text } from '../../../global'
-import { SizedBox, Input } from '../../../components'
-import { useTheme } from 'styled-components'
-
-import { Feather } from '@expo/vector-icons'
-import PlanetCardSecondary from '../../../components/PlanetCardSecondary'
-
-import api from '../../../services/api'
-import { useNavigation } from '@react-navigation/native'
 
 import { PlanetDetailProps } from '../../../interfaces'
+import api from '../../../services/api'
 
-interface PlanetProps {
-    id: string
-    name: string
-    type: string
-    image: string
-    resume: string
-    searchTags: Array<string>
-}
-
-interface SearchProps {
+type SearchProps = {
   search: string
 }
 
 const PlanetSearch = ({ search } : SearchProps ): JSX.Element => {
   const navigation = useNavigation()
   const { colors } = useTheme()
-  const [title, setTitle] = useState('Pesquisar')
-  const [planets, setPlanets] = useState<PlanetDetailProps[]>([])
+  
   const [planetsFiltered, setPlanetsFiltered] = useState<PlanetDetailProps[]>([])
+  const [planets, setPlanets] = useState<PlanetDetailProps[]>([])
+  const [title, setTitle] = useState('Pesquisar')
   const [query, setQuery] = useState('')
 
   async function fetchPlanets() {
     try {
-      const planet = await api.fetchPlanets()
+      const planet: PlanetDetailProps[] = await api.fetchPlanets()
       setPlanets(planet)
-      setPlanetsFiltered(planet)
+      
+      if(!!search) {
+        setQuery(search)
+        const filtered = planet.filter(item => 
+          item.searchTags.toString().indexOf(search.toLocaleLowerCase()) >= 0  
+        )
+        setPlanetsFiltered(filtered)
+        setTitle('Resultado da busca')
+      } else {
+        setPlanetsFiltered(planet)
+      }
     } catch(err) {
       console.log('Erro')
     }    
   }
 
-  function searchPlanet() {
-    const filtered = planets.filter(planet =>
-      planet.searchTags.toString().indexOf(search.toLocaleLowerCase()) >= 0
-    )
-    setPlanetsFiltered(filtered)
-    setQuery(search)
-  }
-
-  function queryPlanet() {
+  function queryFilter() {
     const filtered = planets.filter(planet =>
       planet.searchTags.toString().indexOf(query.toLocaleLowerCase()) >= 0
     )
@@ -62,22 +54,20 @@ const PlanetSearch = ({ search } : SearchProps ): JSX.Element => {
   }
 
   function navigateToPlanetDetail(planetId: number) {
-    navigation.navigate('Search', { page: 2, planetId})
+    navigation.navigate('Search', { page: 2, planetId })
   }
 
   useEffect(() => {
     fetchPlanets()
-  },[])
-
-  useEffect(() => {
-    searchPlanet()
   },[search])
 
   return(
     <Wrapper>
-      <Background />
+      <AppBackground />
       <Header>
-        <Feather name='arrow-left' size={24} color={colors.text} />
+        <BorderlessButton onPress={() => navigation.goBack()} >
+          <Feather name='arrow-left' size={24} color={colors.text} />
+        </BorderlessButton>
         <Feather name='settings' size={24} color={colors.text} />  
       </Header>
       <SizedBox height={20} />
@@ -90,7 +80,7 @@ const PlanetSearch = ({ search } : SearchProps ): JSX.Element => {
         placeholder='Procure planetas, asteroides, estrelas...'
 
         onChangeText={(text) => setQuery(text)}
-        onSubmitEditing={() => queryPlanet()}
+        onSubmitEditing={() => queryFilter()}
         value={query}
       />
       <SizedBox height={20} />
@@ -100,7 +90,8 @@ const PlanetSearch = ({ search } : SearchProps ): JSX.Element => {
         keyExtractor={(item) => String(item.id)}
         renderItem={({ item }) => (
           <PlanetCardSecondary 
-            data={item} 
+            data={item}
+            handlePlanetSelect={() => navigateToPlanetDetail(item.id)}
           />
         )}
         showsVerticalScrollIndicator={false}
@@ -109,4 +100,4 @@ const PlanetSearch = ({ search } : SearchProps ): JSX.Element => {
   )
 }
 
-export default PlanetSearch;
+export default PlanetSearch

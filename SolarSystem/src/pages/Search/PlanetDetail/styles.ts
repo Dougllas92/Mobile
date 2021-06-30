@@ -1,16 +1,20 @@
 import styled from 'styled-components/native'
-import { Dimensions, StyleSheet } from 'react-native'
+import { StyleSheet } from 'react-native'
 import Constants from 'expo-constants'
 
 const statusBar = `${Constants.statusBarHeight + 18}px`
 
-import BackgroundConstellation from '../../../assets/backgrounds/background-constellation.svg'
-
-const height = `${Dimensions.get('window').height * 1.5}px`
-
 export const Wrapper = styled.View`
   flex: 1;
   background-color: ${({theme}) => theme.colors.backgroundSecondary};
+`
+
+export const Background = styled.Image`
+  position: absolute;
+  right: -30%;
+  top: -30%;
+  height: ${({theme}) => theme.size.background}px;
+  width: ${({theme}) => theme.size.background}px;
 `
 
 export const Header = styled.View`
@@ -33,7 +37,7 @@ export const Planet = styled.View`
 `
 
 export const Content = styled.ScrollView`
-  padding: 0px 20px;
+  padding: 10px 20px;
 `
 
 export const Separator = styled.View`
@@ -78,15 +82,4 @@ export const TextValue = styled.Text`
   text-align: justify;
 `
 
-
-
-
-export const Background = styled(BackgroundConstellation).attrs(() => ({
-  height: height,
-  width: height,
-}))`
-  position: absolute;
-  right: -30%;
-  top: -70%;
-`
 

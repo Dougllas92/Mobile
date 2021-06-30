@@ -1,6 +1,11 @@
-import React from 'react'
-import { ActivityIndicator, Dimensions, StyleSheet } from 'react-native'
-import { SvgFromUri } from 'react-native-svg'
+import React, { useEffect, useState } from 'react'
+import AsyncStorage from '@react-native-async-storage/async-storage'
+import { BorderlessButton } from 'react-native-gesture-handler'
+import { ActivityIndicator, Dimensions } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
+import { useTheme } from 'styled-components'
+import { Feather } from '@expo/vector-icons'
+import { SvgUri } from 'react-native-svg'
 
 import { 
   Wrapper,
@@ -18,65 +23,71 @@ import {
   Separator,
   TextValue
 } from './styles'
-import { Text } from '../../../global'
+
+import constellationImg from '../../../assets/backgrounds/constellation.jpg'
+
 import { SizedBox } from '../../../components'
+import { Text } from '../../../global'
 
-import { Feather } from '@expo/vector-icons'
-
+import { COLLECTION_BOOKMARK } from '../../../config/storage'
 import { PlanetDetailProps } from '../../../interfaces'
-import { useTheme } from 'styled-components'
-import { useState } from 'react'
-import { useEffect } from 'react'
 import api from '../../../services/api'
 
-const width = Math.round(Dimensions.get('window').width) * 0.6
+const width = Math.round((Dimensions.get('window').width) * 0.55)
 
-interface Planetprops {
+type Planetprops = {
   planetId: number
 }
 
 const PlanetDetail = ({ planetId }: Planetprops): JSX.Element => {
   const { colors } = useTheme()
+  const { goBack } = useNavigation()
+
   const [planet, setPlanet] = useState<PlanetDetailProps>({} as PlanetDetailProps)
-  const [introSection, setIntroSection] = useState(false)
-  const [featuresSection, setFeaturesSection] = useState(false)
-  const [hydrologySection, setHydrologySection] = useState(false)
   const [geographySection, setGeographySection] = useState(false)
+  const [hydrologySection, setHydrologySection] = useState(false)
+  const [featuresSection, setFeaturesSection] = useState(false)
+  const [introSection, setIntroSection] = useState(false)
 
   if(planetId === undefined) 
     return <ActivityIndicator />
 
+  async function handleAddPlanetBookmark(planet: PlanetDetailProps) {
+    const response = await AsyncStorage.getItem(COLLECTION_BOOKMARK)
+    const storage = response ? JSON.parse(response) : []
+  
+    const data = {
+      ...planet,
+      bookmark: true
+    }
+  
+    await AsyncStorage.setItem(COLLECTION_BOOKMARK, 
+      JSON.stringify([...storage, data]))
+  }
+  
   //Search planet API and convert array in object
   async function fetchPlanet() {
     const data = await api.searchPlanet(planetId)
-    const returnedData = data.reduce((acc: any, value: any) => {
-      acc[value] = value
-      return value
-    }, {})
-
-    setPlanet(returnedData)
+    setPlanet(data)
   }
 
   useEffect(() => {
     fetchPlanet()
   }, [planetId])
-  
+
   return(
     <Wrapper>
       <Header>
-        <Background />
-        <Feather name='arrow-left' size={24} color={colors.text} /> 
+        <Background source={constellationImg} />
+        <BorderlessButton onPress={() => goBack()}>
+          <Feather name='arrow-left' size={24} color={colors.text} /> 
+        </BorderlessButton>
         <Feather name='settings' size={24} color={colors.text} />
       </Header>
       <Planet>
-        <SvgFromUri 
-          uri={planet.image} 
-          height={width} 
-          width={width} 
-        />
+        <SvgUri uri={planet.image} height={width} width={width} />
       </Planet>
       <SizedBox height={40} />
-      
       <Content>
         <Block>
           <BlockHeader>
@@ -89,7 +100,7 @@ const PlanetDetail = ({ planetId }: Planetprops): JSX.Element => {
           </BlockHeader>
           <SizedBox height={24} />
           <BlockResume>
-            <TextValue>{planet.resume}</TextValue>
+            <TextValue>{planet.resume?.substr(0, 74)}</TextValue>
           </BlockResume>
         </Block>
 
@@ -105,7 +116,7 @@ const PlanetDetail = ({ planetId }: Planetprops): JSX.Element => {
           
           {!!introSection ?
             <Description>
-              <TextValue>{planet.introduction}</TextValue>
+              <TextValue>{planet.resume}</TextValue>
             </Description>
             : null
           }
@@ -161,7 +172,7 @@ const PlanetDetail = ({ planetId }: Planetprops): JSX.Element => {
           
           {!!hydrologySection ?
             <Description>
-              <TextValue>{planet.hidrology}</TextValue>
+              <TextValue>{planet.resume}</TextValue>
             </Description>
             : null
           }
@@ -177,7 +188,7 @@ const PlanetDetail = ({ planetId }: Planetprops): JSX.Element => {
           
           {!!geographySection ?
             <Description>
-              <TextValue>{planet.geography}</TextValue>
+              <TextValue>{planet.resume}</TextValue>
             </Description>
             : null
           }

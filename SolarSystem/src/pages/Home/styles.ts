@@ -1,21 +1,8 @@
 import styled from 'styled-components/native'
-import { Dimensions } from 'react-native'
-import BackgroundConstellation from '../../assets/backgrounds/background-constellation.svg'
-import Constants from 'expo-constants'
-
-const height = Dimensions.get('window').height * 1.5
 
 export const Wrapper = styled.View`
   flex: 1;
   background-color: ${({theme}) => theme.colors.background};
-`
-export const Background = styled(BackgroundConstellation).attrs(() => ({
-  height: height,
-  width: height
-}))`
-  position: absolute;
-  right: -30%;
-  top: -30%;
 `
 
 export const Header = styled.View`
@@ -33,4 +20,8 @@ export const Categories = styled.View`
   padding: 0px 20px 10px;
 `
 
-export const Planets = styled.View``
+export const Planets = styled.View`
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+`

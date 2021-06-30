@@ -1,16 +1,16 @@
 import React from 'react'
-import { SvgFromUri } from 'react-native-svg'
 import { TouchableOpacityProps } from 'react-native'
+import { SvgFromUri } from 'react-native-svg'
+import { Feather } from '@expo/vector-icons'
+import { useTheme } from 'styled-components'
 
 import { Footer, Wrapper } from './styles'
 
-import { Feather } from '@expo/vector-icons'
 import { Text } from '../../global'
-import { useTheme } from 'styled-components'
 
 interface PlanetProps extends TouchableOpacityProps {
   data: {
-    id: string
+    id: number
     name: string
     type: string
     image: string
@@ -22,6 +22,7 @@ const PlanetCard = ({ data, ...props } : PlanetProps) : JSX.Element => {
   const { colors } = useTheme();
 
   return(
+    //@ts-ignore
     <Wrapper key={data.id} {...props}>
       <SvgFromUri
         uri={data.image}

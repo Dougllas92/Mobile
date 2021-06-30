@@ -1,7 +1,6 @@
 import React from 'react'
-import { TouchableOpacityProps } from 'react-native'
-
 import { SvgFromUri } from 'react-native-svg'
+import { useTheme } from 'styled-components'
 import { Feather } from '@expo/vector-icons'
 
 import { 
@@ -13,21 +12,24 @@ import {
   Footer
  } from './styles';
 
- import { Text, Button } from '../../global';
-import { SizedBox } from '..';
-import { useTheme } from 'styled-components';
+import { Text } from '../../global'
+import { SizedBox } from '..'
 
-interface PlanetCardSecondary {
-  data: {
-    id: string
-    name: string
-    type: string
-    image: string
-    resume: string
-  },
+type PlanetCard ={
+  id: number
+  name: string
+  type: string
+  image: string
+  resume: string
+  bookmark: boolean
+}
+
+type PlanetCardSecondary = {
+  data: PlanetCard
+  handlePlanetSelect: (planetId: number) => void
 } 
 
-const PlanetCardSecondary = ({ data } : PlanetCardSecondary) : JSX.Element => {
+const PlanetCardSecondary = ({ data, handlePlanetSelect } : PlanetCardSecondary) : JSX.Element => {
   const { colors } = useTheme()
   return(
     <Wrapper>
@@ -43,9 +45,6 @@ const PlanetCardSecondary = ({ data } : PlanetCardSecondary) : JSX.Element => {
         <SizedBox height={10} />
         <Header>
           <Text size='subtitle' bold>{data.name}</Text>
-          <Button height={24}>
-            <Feather name='bookmark' size={24} color={colors.textOpacity} />
-          </Button>
         </Header>
         <Body>
           <Text 
@@ -58,7 +57,7 @@ const PlanetCardSecondary = ({ data } : PlanetCardSecondary) : JSX.Element => {
           >{`${data.resume.substr(0,69)} ...`}</Text>
         </Body>
         <SizedBox height={12} />
-        <Footer>
+        <Footer onPress={() => handlePlanetSelect(data.id)}>
           <Text size='caption'>Continue lendo</Text>
           <SizedBox width={8} />
           <Feather name='arrow-right' size={16} color={colors.secondary} />
@@ -68,4 +67,4 @@ const PlanetCardSecondary = ({ data } : PlanetCardSecondary) : JSX.Element => {
   )
 }
 
-export default PlanetCardSecondary;
+export default PlanetCardSecondary
