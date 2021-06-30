@@ -8,7 +8,6 @@
     "splash": {
       "resizeMode": "cover",
       "image": "./assets/splash.png",
-      
       "backgroundColor": "#151515"
     },
     "updates": {
@@ -24,7 +23,9 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#151515"
-      }
+      },
+      "package": "com.dougllas92.solarsystem",
+      "versionCode": 1
     },
     "androidStatusBar": {
       "backgroundColor": "#151515",
@@ -33,6 +34,8 @@
     "androidNavigationBar": {
       "backgroundColor": "#151515",
       "barStyle": "light-content"
-    }
+    },
+    "description": "Projeto desenvolvido seguindo o layout do Desafio proposta pela umpontoseis",
+    "githubUrl": "https://github.com/Dougllas92/Mobile/tree/main/SolarSystem"
   }
 }

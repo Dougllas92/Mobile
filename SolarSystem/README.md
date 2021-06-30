@@ -22,10 +22,17 @@ Items do desafio
 ## 👨‍🔬 Visualizar projeto
 
 Para visualizar o projeto baixe o aplicativo Expo Go na Play Store e escaneie o código abaixo
+<h1>
+    <img alt="qrcode" src=".github/solarsystem-qrcode.png" />
+</h1>
 
 ## 🚀 Instalando Solar System
 
-Para instalar o Solar Sysmte, siga estas etapas:
+Para instalar o Solar System, siga estas etapas:
+
+Baixar o projeto no link abaixo
+*O link abaixo faz download apenas deste projeto, enquanto o clone ira fazer download de todos.*
+https://drive.google.com/drive/folders/1n4A_G2BWYhKf54U58z-i6JapHNvWdtyW
 
 Clone o projeto e acesse a pasta
 
@@ -43,27 +50,3 @@ Inicie a aplicação
 ```
 expo start
 ```
-
-**Server**
-
-Instale o JSON Server globalmente na sua máquina
-
-```
-npm install -g json-server
-```
-
-Inicie o servidor
-```
-json-server ./src/services/server.json --host 192.168.1.1 --port 9000
-```
-
-⚠️ *Lembre-se de utilizar o endereço IP da sua máquina* ⚠️
-
-
-## ☕ Usando Solar System
-
-**Alterando o IP do App**
-
-* Abre a pasta SolarSystem no editor e acesse o arquivo `src/services/api.tsx`
-
-* Em baseURL coloque o IP:PORT que colocou no Server.
