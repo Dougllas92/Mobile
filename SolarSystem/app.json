@@ -1,14 +1,15 @@
 {
   "expo": {
-    "name": "SolarSystem",
+    "name": "Solar System",
     "slug": "SolarSystem",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
+      "resizeMode": "cover",
       "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      
+      "backgroundColor": "#151515"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -22,11 +23,16 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
+        "backgroundColor": "#151515"
       }
     },
-    "web": {
-      "favicon": "./assets/favicon.png"
+    "androidStatusBar": {
+      "backgroundColor": "#151515",
+      "barStyle": "light-content"
+    },
+    "androidNavigationBar": {
+      "backgroundColor": "#151515",
+      "barStyle": "light-content"
     }
   }
 }
