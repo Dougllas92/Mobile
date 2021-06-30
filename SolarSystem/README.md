@@ -1,6 +1,6 @@
 <h1 align="center">Solar System</h1>
 
-<img src=".github/solar-system.png" alt="Solar System">
+<img src=".github/solarsystem-preview.png" alt="Solar System">
 
 ### 💻 Projeto Solar System - Umpontoseis
 
